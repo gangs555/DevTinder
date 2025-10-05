@@ -6,10 +6,15 @@ app.listen(3000, () => {
   console.log("app is listen on 3000 port");
 });
 
-app.use("/test", (req, res) => {
-  res.send("hello for test request");
-});
-
-app.use("/", (req, res) => {
-  res.send("hello from then server");
-});
+app.use(
+  "/user",
+  (req, res, next) => {
+    console.log("RH1");
+    next();
+    res.send("response 1");
+  },
+  (req, res) => {
+    console.log("rh 2");
+    res.send("response 2");
+  }
+);
